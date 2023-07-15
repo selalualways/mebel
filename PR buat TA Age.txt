@@ -1,0 +1,11 @@
+PR buat TA Age
+
+- Template
+biar sidebar tidak selalu aktif, atau saat masuk page baru, sidebar langsung tutup, dan dibuka dengan cara klik strip 3 atas kiri
+
+- Form Transaksi (Penjualan)
+cara sangkutkan harga satuan dari data barang
+cara hitung total harga (cara isi rumus)
+
+- Form Barang
+barang_list.php, cara biar ID kategori munculnya nama kategori
