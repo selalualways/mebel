@@ -30,9 +30,11 @@ class Itempenjualan_model extends CI_Model
       $this->db->delete('item_transaksi'); 
     }
 
-    public function insert($data)
+    public function insert($no_transaksi, $id_barang, $banyaknya, $hargasatuan)
     {
-      $this->db->insert('item_transaksi', $data);
+      //$this->db->insert('item_transaksi', $data);
+      $this->db->query("insert into item_transaksi(no_transaksi, id_barang, banyaknya, hargasatuan) values ($no_transaksi, $id_barang, $banyaknya, $hargasatuan) on duplicate key update banyaknya=banyaknya+$banyaknya");
+      return true;
     }
 
     public function update($no_transaksi, $data)

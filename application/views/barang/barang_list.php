@@ -47,7 +47,8 @@
               <table class="table table-bordered table-striped" id="tabelbarang">
               <thead>
                 <tr>
-                    <th>ID Barang</th>
+                    <th>Nomor</th>
+                    <th>Kode Barang</th>
                     <th>Kategori</th>
                     <th>Nama Barang</th>
                     <th>Harga</th>
@@ -59,9 +60,10 @@
                 <?php foreach($data_barang as $row) { ?>
                      <tr>
                         <td><?php echo $row->id_barang; ?></td>
+                        <td><?php echo $row->kode_barang; ?></td>
                         <td><?php echo $row->nama_kategori; ?></td>
                         <td><?php echo $row->nama_barang; ?></td>
-                        <td><?php echo $row->harga; ?></td>
+                        <td>Rp <?php echo number_format($row->harga,2,',','.'); ?></td>
                         <td><?php echo $row->stock; ?></td>
                         <td class="text-nowrap">
                            <a href="<?php echo site_url('Barang/ubah_barang/'. $row->id_barang) ?>" class="btn btn-sm btn-warning"> 
@@ -91,4 +93,4 @@
    document.addEventListener('DOMContentLoaded', function(){
       $('#tabelbarang').DataTable();
    })
-</script> 
+</script>

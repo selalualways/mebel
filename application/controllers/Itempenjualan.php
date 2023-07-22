@@ -66,57 +66,16 @@ class Itempenjualan extends CI_Controller {
 			$no_transaksi = $this->input->post('no_transaksi');
 			$this->tambah_ip($no_transaksi);
 		} else {
-			echo "<script>alert('Barang sudah ada!!!')</script>";
-			$no_transaksi = $this->input->post('no_transaksi');
-			$data = array(
-			'no_transaksi' => $this->input->post('no_transaksi'),
-			'id_barang' => $this->input->post('id_barang'),
-			'banyaknya' => $this->input->post('banyaknya'),
-			'hargasatuan' => $this->input->post('hargasatuan'),
-			);
 			
-			$this->Itempenjualan_model->insert($data);
+			$no_transaksi = $this->input->post('no_transaksi');
+			$id_barang = $this->input->post('id_barang');
+			$banyaknya = $this->input->post('banyaknya');
+			$hargasatuan = $this->input->post('hargasatuan');
+			
+			$this->Itempenjualan_model->insert($no_transaksi, $id_barang, $banyaknya, $hargasatuan);
+
 			redirect(site_url('Itempenjualan/tambah_ip/'. $no_transaksi));
 			
-		}
-	}
-
-	public function ubah_ip($no_transaksi)
-	{
-		$data_item_transaksi = $this->Itempenjualan_model->get_ip($no_transaksi);
-		$data = array(
-			'menu_dashboard' => '',
-            'menu_penjualan' => 'active',
-			'judul' => 'UBAH BARANG PENJUALAN',
-			'action' => site_url('Itempenjualan/proses_ubah_ip'),
-			'data_barang' => $this->Barang_model->get_all_barang(),
-			'no_transaksi' => $data_item_transaksi->no_transaksi,
-            'id_barang' => $data_item_transaksi->id_barang,
-			'banyaknya' => $data_item_transaksi->banyaknya,
-			'hargasatuan' => $data_item_transaksi->hargasatuan,
-		);
-		
-		$this->template->load('template/template_admin', 'Itempenjualan/form_ip', $data);
-		
-	}
-
-	public function proses_ubah_ip()
-	{
-		$this->_rules();
-		if($this->form_validation->run() == FALSE) {
-			$no_transaksi = $this->input->post('no_transaksi');
-			$this->ubah_penjualan($no_transaksi);
-		} else {
-			$no_transaksi = $this->input->post('no_transaksi');
-			$data = array(
-				'no_transaksi' => $this->input->post('no_transaksi'),
-				'id_barang' => $this->input->post('id_barang'),
-				'banyaknya' => $this->input->post('banyaknya'),
-				'hargasatuan' => $this->input->post('hargasatuan'),
-			);
-
-			$this->Itempenjualan_model->update($no_transaksi, $data);
-			redirect(site_url('Itempenjualan'));
 		}
 	}
 

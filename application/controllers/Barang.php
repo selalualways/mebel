@@ -57,6 +57,7 @@ class Barang extends CI_Controller {
 			'action' => site_url('barang/proses_tambah_barang'),
 			'data_kategori' => $this->Kategori_model->get_all_kategori(),
 			'id_barang' => set_value('id_barang'),
+			'kode_barang' => set_value('kode_barang'),
 			'id_kategori' => set_value('id_kategori'),
 			'nama_barang' => set_value('nama_barang'),
 			'harga' => set_value('harga'),
@@ -71,7 +72,8 @@ class Barang extends CI_Controller {
 
 	public function _rules()
 	{
-		$this->form_validation->set_rules('id_barang','ID Barang','trim|required');
+		
+		$this->form_validation->set_rules('kode_barang','Kode Barang','trim|required');
 		$this->form_validation->set_rules('id_kategori','Kategori','trim|required');
         $this->form_validation->set_rules('nama_barang','Nama Barang','trim|required');
 		$this->form_validation->set_rules('harga','Tanggal','trim|required');
@@ -86,6 +88,7 @@ class Barang extends CI_Controller {
 		} else {
 			$data = array(
 			'id_barang' => $this->input->post('id_barang'),
+			'kode_barang' => $this->input->post('kode_barang'),
 			'id_kategori' => $this->input->post('id_kategori'),
             'nama_barang' => $this->input->post('nama_barang'),
 			'harga' => $this->input->post('harga'),
@@ -107,6 +110,7 @@ class Barang extends CI_Controller {
 			'action' => site_url('barang/proses_ubah_barang'),
 			'data_kategori' => $this->Kategori_model->get_all_kategori(),
 			'id_barang' => $data_barang->id_barang,
+			'kode_barang' => $data_barang->kode_barang,
 			'id_kategori' => $data_barang->id_kategori,
             'nama_barang' => $data_barang->nama_barang,
 			'harga' => $data_barang->harga,
@@ -129,6 +133,7 @@ class Barang extends CI_Controller {
 			$id_barang = $this->input->post('id_barang');
 			$data = array(
 				'id_barang' => $this->input->post('id_barang'),
+				'kode_barang' => $this->input->post('kode_barang'),
 				'id_kategori' => $this->input->post('id_kategori'),
 				'nama_barang' => $this->input->post('nama_barang'),
 				'harga' => $this->input->post('harga'),

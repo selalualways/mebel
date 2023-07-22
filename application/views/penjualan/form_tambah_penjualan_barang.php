@@ -40,7 +40,7 @@
               
               <div class="card-body">
               
-              <table Class="table-bordered">
+              <table Class="table table-bordered">
                 
                 <tr>
                     <td align="center">No</td>
