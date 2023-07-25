@@ -144,4 +144,18 @@ class Barang extends CI_Controller {
 			redirect(site_url('Barang'));
 		}
 	}
+
+	public function cetak_barang()
+	{
+		
+		$data = array(
+			'menu_dashboard' => '',
+            'menu_penjualan' => '',
+			
+			'data_barang' => $this->Barang_model->get_all_kategori_barang(),
+			
+		);
+		$this->template->load('template/template_admin', 'barang/cetak_barang', $data);
+		
+	}
 }
