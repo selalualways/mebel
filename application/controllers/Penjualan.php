@@ -46,6 +46,8 @@ class Penjualan extends CI_Controller {
 			'totalharga' => set_value('totalharga'),
 			'tanggal' => set_value('tanggal'),
 			'id_karyawan' => set_value('id_karyawan'),
+			'pelanggan' => set_value('pelanggan'),
+			'hp_pelanggan' => set_value('hp_pelanggan'),
 		);
 		
 		$this->template->load('template/template_admin', 'penjualan/form_penjualan', $data);
@@ -73,6 +75,8 @@ class Penjualan extends CI_Controller {
 			'totalharga' => $this->input->post('totalharga'),
 			'tanggal' => $this->input->post('tanggal'),
 			'id_karyawan' => $this->input->post('id_karyawan'),
+			'pelanggan' => $this->input->post('pelanggan'),
+			'hp_pelanggan' => $this->input->post('hp_pelanggan'),
 			);
 
 			$this->Penjualan_model->insert($data);
@@ -93,6 +97,8 @@ class Penjualan extends CI_Controller {
 			'totalharga' => $data_transaksi->totalharga,
 			'tanggal' => $data_transaksi->tanggal,
 			'id_karyawan' => $data_transaksi->id_karyawan,
+			'pelanggan' => $data_transaksi->pelanggan,
+			'hp_pelanggan' => $data_transaksi->hp_pelanggan,
 		);
 		
 		$this->template->load('template/template_admin', 'Penjualan/form_penjualan', $data);
@@ -114,6 +120,8 @@ class Penjualan extends CI_Controller {
 				'totalharga' => $this->input->post('totalharga'),
 				'tanggal' => $this->input->post('tanggal'),
 				'id_karyawan' => $this->input->post('id_karyawan'),
+				'pelanggan' => $this->input->post('pelanggan'),
+				'hp_pelanggan' => $this->input->post('hp_pelanggan'),
 			);
 
 			$this->Penjualan_model->update($no_transaksi, $data);
@@ -134,6 +142,8 @@ class Penjualan extends CI_Controller {
 			'no_transaksi' => $data_transaksi->no_transaksi,
 			'total' => $data_transaksi->total,
 			'nama_karyawan' => $data_transaksi->nama_karyawan,
+			'pelanggan' => $data_transaksi->pelanggan,
+			'hp_pelanggan' => $data_transaksi->hp_pelanggan,
 			'data_ip'=> $data_ip,
 		);
 		

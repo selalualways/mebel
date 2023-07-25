@@ -25,6 +25,8 @@
    <h1>AISYAH ADREENA FURNITURE</h1>
    <h3>No Nota: <?php echo $no_transaksi; ?></h3>
    <h5>Kasir: <b><?php echo $nama_karyawan; ?></b></h5>
+   <h5>Pelanggan : <b><?php echo $pelanggan; ?></b> </h5> 
+   <h5>HP/WA Pelanggan :<b> <?php echo $hp_pelanggan; ?></b></h5><br>
    <text>Pemesanan pada <b><?php echo $tanggal; ?></b></text>
    <hr>
    <style>
@@ -73,6 +75,8 @@
                         <td align="center">
                           Total Pembayaran <b>Rp <?php echo number_format($total,2,',','.'); ?></b>
                           <br>
+                          
+                      
                           <b>Terima Kasih Sudah Berbelanja Disini</b>
                         </td>
 </tr>

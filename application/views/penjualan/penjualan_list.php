@@ -47,6 +47,8 @@
                     <td>Tanggal</td>
                     <td>Total Harga</td>
                     <td>Kasir</td>
+                    <td>Nama Pelanggan</td>
+                    <td>HP/WA Pelanggan</td>
                     <td>Aksi</td>
                 </tr>
 </thead>
@@ -58,6 +60,8 @@
                         <td>Rp <?php echo number_format($row->total,2,',','.'); ?></td>
                         
                         <td><?php echo $row->nama_karyawan; ?></td>
+                        <td><?php echo $row->pelanggan; ?></td>
+                        <td><?php echo $row->hp_pelanggan; ?></td>
                         <td class="text-nowrap">
                            <a href="<?php echo site_url('Penjualan/ubah_penjualan/'. $row->no_transaksi) ?>" class="btn btn-sm btn-warning"> 
                               <i class='fas fa-edit mr-1'></i>Ubah</a>
