@@ -34,6 +34,7 @@
                   DATA PENJUALAN
                 </h3>
                 <div class="card-tools">
+                <a class="btn btn-success" href="<?php echo site_url('Laporan/index') ?>"><i class="fas fa-plus mr-1"></i>Laporan Bulanan</a>
                 <a class="btn btn-primary" href="<?php echo site_url('Penjualan/tambah_penjualan') ?>"><i class="fas fa-plus mr-1"></i>Tambah</a>
                 </div>
                 
