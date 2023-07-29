@@ -14,10 +14,12 @@
 
 
 -- Dumping database structure for meubelaf
+DROP DATABASE IF EXISTS `meubelaf`;
 CREATE DATABASE IF NOT EXISTS `meubelaf` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `meubelaf`;
 
 -- Dumping structure for table meubelaf.admin
+DROP TABLE IF EXISTS `admin`;
 CREATE TABLE IF NOT EXISTS `admin` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) DEFAULT NULL,
@@ -25,13 +27,14 @@ CREATE TABLE IF NOT EXISTS `admin` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
--- Dumping data for table meubelaf.admin: ~2 rows (approximately)
+-- Dumping data for table meubelaf.admin: ~1 rows (approximately)
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
 REPLACE INTO `admin` (`id`, `username`, `password`) VALUES
 	(1, 'admin', 'admin123');
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 
 -- Dumping structure for table meubelaf.barang
+DROP TABLE IF EXISTS `barang`;
 CREATE TABLE IF NOT EXISTS `barang` (
   `id_barang` int(11) NOT NULL AUTO_INCREMENT,
   `kode_barang` varchar(50) NOT NULL,
@@ -44,13 +47,13 @@ CREATE TABLE IF NOT EXISTS `barang` (
   CONSTRAINT `FK_barang_kategori` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id_kategori`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
 
--- Dumping data for table meubelaf.barang: ~43 rows (approximately)
+-- Dumping data for table meubelaf.barang: ~44 rows (approximately)
 /*!40000 ALTER TABLE `barang` DISABLE KEYS */;
 REPLACE INTO `barang` (`id_barang`, `kode_barang`, `id_kategori`, `nama_barang`, `harga`, `stock`) VALUES
 	(1, 'KCP180', 1, 'Central Paradise Plytop 180', 2500000, 98),
 	(2, 'KCP160', 1, 'Central Paradise Plytop 160', 2500000, 99),
 	(3, 'KCPS160', 1, 'Central Paradise Standard 160', 1800000, 100),
-	(4, 'KUPP180', 1, 'Uniland Paradise Plytop 180', 2300000, 99),
+	(4, 'KUPP180', 1, 'Uniland Paradise Plytop 180', 2300000, 89),
 	(5, 'KUPP160', 1, 'Uniland Paradise Plytop 160', 2100000, 98),
 	(6, 'KUPP120', 1, 'Uniland Paradise Plytop 120', 1750000, 100),
 	(7, 'KUPS180', 1, 'Uniland Paradise Standard 180', 2000000, 100),
@@ -94,6 +97,7 @@ REPLACE INTO `barang` (`id_barang`, `kode_barang`, `id_kategori`, `nama_barang`,
 /*!40000 ALTER TABLE `barang` ENABLE KEYS */;
 
 -- Dumping structure for table meubelaf.item_transaksi
+DROP TABLE IF EXISTS `item_transaksi`;
 CREATE TABLE IF NOT EXISTS `item_transaksi` (
   `no_transaksi` int(11) NOT NULL,
   `id_barang` int(11) NOT NULL DEFAULT 0,
@@ -105,15 +109,17 @@ CREATE TABLE IF NOT EXISTS `item_transaksi` (
   CONSTRAINT `FK_item_transaksi_transaksi` FOREIGN KEY (`no_transaksi`) REFERENCES `transaksi` (`no_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table meubelaf.item_transaksi: ~2 rows (approximately)
+-- Dumping data for table meubelaf.item_transaksi: ~3 rows (approximately)
 /*!40000 ALTER TABLE `item_transaksi` DISABLE KEYS */;
 REPLACE INTO `item_transaksi` (`no_transaksi`, `id_barang`, `banyaknya`, `hargasatuan`) VALUES
 	(1, 4, 4, 2300000),
 	(1, 5, 2, 2100000),
-	(1, 13, 7, 2000000);
+	(1, 13, 7, 2000000),
+	(2, 4, 10, 2300000);
 /*!40000 ALTER TABLE `item_transaksi` ENABLE KEYS */;
 
 -- Dumping structure for table meubelaf.karyawan
+DROP TABLE IF EXISTS `karyawan`;
 CREATE TABLE IF NOT EXISTS `karyawan` (
   `id_karyawan` int(11) NOT NULL AUTO_INCREMENT,
   `nama_karyawan` varchar(50) DEFAULT NULL,
@@ -129,6 +135,7 @@ REPLACE INTO `karyawan` (`id_karyawan`, `nama_karyawan`) VALUES
 /*!40000 ALTER TABLE `karyawan` ENABLE KEYS */;
 
 -- Dumping structure for table meubelaf.kategori
+DROP TABLE IF EXISTS `kategori`;
 CREATE TABLE IF NOT EXISTS `kategori` (
   `id_kategori` int(10) NOT NULL AUTO_INCREMENT,
   `nama_kategori` varchar(50) DEFAULT NULL,
@@ -149,23 +156,47 @@ REPLACE INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
 /*!40000 ALTER TABLE `kategori` ENABLE KEYS */;
 
 -- Dumping structure for table meubelaf.transaksi
+DROP TABLE IF EXISTS `transaksi`;
 CREATE TABLE IF NOT EXISTS `transaksi` (
   `no_transaksi` int(11) NOT NULL DEFAULT 0,
   `totalharga` double DEFAULT NULL,
-  `tanggal` timestamp NULL DEFAULT current_timestamp(),
+  `tanggal` datetime DEFAULT current_timestamp(),
   `id_karyawan` int(11) DEFAULT NULL,
+  `pelanggan` varchar(50) DEFAULT NULL,
+  `hp_pelanggan` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`no_transaksi`) USING BTREE,
   KEY `FK_transaksi_karyawan` (`id_karyawan`),
   CONSTRAINT `FK_transaksi_karyawan` FOREIGN KEY (`id_karyawan`) REFERENCES `karyawan` (`id_karyawan`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table meubelaf.transaksi: ~1 rows (approximately)
+-- Dumping data for table meubelaf.transaksi: ~0 rows (approximately)
 /*!40000 ALTER TABLE `transaksi` DISABLE KEYS */;
-REPLACE INTO `transaksi` (`no_transaksi`, `totalharga`, `tanggal`, `id_karyawan`) VALUES
-	(1, 0, '2023-07-11 00:36:00', 3);
+REPLACE INTO `transaksi` (`no_transaksi`, `totalharga`, `tanggal`, `id_karyawan`, `pelanggan`, `hp_pelanggan`) VALUES
+	(1, 0, '2023-07-11 00:36:00', 3, 'Siti', '087715506421'),
+	(2, 0, '2024-06-04 17:15:00', 2, 'Maimunnah', '085705821516');
 /*!40000 ALTER TABLE `transaksi` ENABLE KEYS */;
 
+-- Dumping structure for view meubelaf.vrtransaksi
+DROP VIEW IF EXISTS `vrtransaksi`;
+-- Creating temporary table to overcome VIEW dependency errors
+CREATE TABLE `vrtransaksi` (
+	`tahun` INT(4) NULL,
+	`jan` DOUBLE NOT NULL,
+	`feb` DOUBLE NOT NULL,
+	`mar` DOUBLE NOT NULL,
+	`apr` DOUBLE NOT NULL,
+	`mei` DOUBLE NOT NULL,
+	`jun` DOUBLE NOT NULL,
+	`jul` DOUBLE NOT NULL,
+	`agu` DOUBLE NOT NULL,
+	`sep` DOUBLE NOT NULL,
+	`okt` DOUBLE NOT NULL,
+	`nov` DOUBLE NOT NULL,
+	`des` DOUBLE NOT NULL
+) ENGINE=MyISAM;
+
 -- Dumping structure for trigger meubelaf.item_transaksi_after_delete
+DROP TRIGGER IF EXISTS `item_transaksi_after_delete`;
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
 CREATE TRIGGER `item_transaksi_after_delete` AFTER DELETE ON `item_transaksi` FOR EACH ROW BEGIN
@@ -176,6 +207,7 @@ DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
 -- Dumping structure for trigger meubelaf.item_transaksi_after_insert
+DROP TRIGGER IF EXISTS `item_transaksi_after_insert`;
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
 CREATE TRIGGER `item_transaksi_after_insert` AFTER INSERT ON `item_transaksi` FOR EACH ROW BEGIN
@@ -184,6 +216,80 @@ WHERE barang.id_barang = NEW.id_barang;
 END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
+
+-- Dumping structure for view meubelaf.vrtransaksi
+DROP VIEW IF EXISTS `vrtransaksi`;
+-- Removing temporary table and create final VIEW structure
+DROP TABLE IF EXISTS `vrtransaksi`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `vrtransaksi` AS SELECT 
+YEAR(t.tanggal) AS 'tahun',
+IFNULL(
+(SELECT SUM(i2.banyaknya * i2.hargasatuan) FROM item_transaksi i2, transaksi t2
+WHERE i2.no_transaksi = t2.no_transaksi AND MONTH(t2.tanggal) = 1 AND YEAR(t2.tanggal) = (SELECT tahun))
+,0) AS jan,
+
+IFNULL(
+(SELECT SUM(i2.banyaknya * i2.hargasatuan) FROM item_transaksi i2, transaksi t2
+WHERE i2.no_transaksi = t2.no_transaksi AND MONTH(t2.tanggal) = 2 AND YEAR(t2.tanggal) = (SELECT tahun))
+,0) AS feb,
+
+IFNULL(
+(SELECT SUM(i2.banyaknya * i2.hargasatuan) FROM item_transaksi i2, transaksi t2
+WHERE i2.no_transaksi = t2.no_transaksi AND MONTH(t2.tanggal) = 3 AND YEAR(t2.tanggal) = (SELECT tahun))
+,0) AS mar,
+
+IFNULL(
+(SELECT SUM(i2.banyaknya * i2.hargasatuan) FROM item_transaksi i2, transaksi t2
+WHERE i2.no_transaksi = t2.no_transaksi AND MONTH(t2.tanggal) = 4 AND YEAR(t2.tanggal) = (SELECT tahun))
+,0) AS apr,
+
+IFNULL(
+(SELECT SUM(i2.banyaknya * i2.hargasatuan) FROM item_transaksi i2, transaksi t2
+WHERE i2.no_transaksi = t2.no_transaksi AND MONTH(t2.tanggal) = 5 AND YEAR(t2.tanggal) = (SELECT tahun))
+,0) AS mei,
+
+IFNULL(
+(SELECT SUM(i2.banyaknya * i2.hargasatuan) FROM item_transaksi i2, transaksi t2
+WHERE i2.no_transaksi = t2.no_transaksi AND MONTH(t2.tanggal) = 6 AND YEAR(t2.tanggal) = (SELECT tahun))
+,0) AS jun,
+
+IFNULL(
+(SELECT SUM(i2.banyaknya * i2.hargasatuan) FROM item_transaksi i2, transaksi t2
+WHERE i2.no_transaksi = t2.no_transaksi AND MONTH(t2.tanggal) = 7 AND YEAR(t2.tanggal) = (SELECT tahun))
+,0) AS jul,
+
+IFNULL(
+(SELECT SUM(i2.banyaknya * i2.hargasatuan) FROM item_transaksi i2, transaksi t2
+WHERE i2.no_transaksi = t2.no_transaksi AND MONTH(t2.tanggal) = 8 AND YEAR(t2.tanggal) = (SELECT tahun))
+,0) AS agu,
+
+IFNULL(
+(SELECT SUM(i2.banyaknya * i2.hargasatuan) FROM item_transaksi i2, transaksi t2
+WHERE i2.no_transaksi = t2.no_transaksi AND MONTH(t2.tanggal) = 9 AND YEAR(t2.tanggal) = (SELECT tahun))
+,0) AS sep,
+
+IFNULL(
+(SELECT SUM(i2.banyaknya * i2.hargasatuan) FROM item_transaksi i2, transaksi t2
+WHERE i2.no_transaksi = t2.no_transaksi AND MONTH(t2.tanggal) = 10 AND YEAR(t2.tanggal) = (SELECT tahun))
+,0) AS okt,
+
+IFNULL(
+(SELECT SUM(i2.banyaknya * i2.hargasatuan) FROM item_transaksi i2, transaksi t2
+WHERE i2.no_transaksi = t2.no_transaksi AND MONTH(t2.tanggal) = 11 AND YEAR(t2.tanggal) = (SELECT tahun))
+,0) AS nov,
+
+IFNULL(
+(SELECT SUM(i2.banyaknya * i2.hargasatuan) FROM item_transaksi i2, transaksi t2
+WHERE i2.no_transaksi = t2.no_transaksi AND MONTH(t2.tanggal) = 12 AND YEAR(t2.tanggal) = (SELECT tahun))
+,0) AS des
+
+FROM transaksi t
+INNER JOIN item_transaksi i ON i.no_transaksi = t.no_transaksi
+GROUP BY
+(
+SELECT 
+YEAR(t.tanggal)
+) ;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
