@@ -2,17 +2,18 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Barang_model extends CI_Model
+class Stockbarang_model extends CI_Model
 {
     public function get_all_barang()
     {
       return $this->db->get('barang')->result();
     }
 
-    public function get_all_kategori_barang()
+    public function get_stock_kosong()
     {
       $this->db->select('*');
       $this->db->from('barang');
+      $this->db->where('stock', 0);
       $this->db->join('kategori','kategori.id_kategori = barang.id_kategori');
       
       return $this->db->get()->result();

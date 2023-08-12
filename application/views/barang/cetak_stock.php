@@ -34,20 +34,16 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">
-                  <i class="fas fa-chart-pie mr-1"></i>
-                  DATA BARANG
+                  <i class="fas mr-1"></i>
+                  DATA BARANG HABIS
                 </h3>
-                <div class="card-tools">
-                <a class="btn btn-primary" href="<?php echo site_url('Barang/tambah_barang') ?>"><i class="fas fa-plus mr-1"></i>Tambah</a>
-                <a class="btn btn-success" href="<?php echo site_url('Barang/cetak_barang') ?>"><i class="fas fa-print mr-1"></i>Cetak</a>
-                <a class="btn btn-warning" href="<?php echo site_url('Stockbarang') ?>"><i class="fas fa-info mr-1"></i>List Stock Habis</a>
-                </div>
+                <div class="card-tools">                </div>
                 
               </div><!-- /.card-header -->
               <div class="card-body">
               
-              <table class="table table-bordered table-striped" id="tabelbarang">
-              <thead>
+              <table class="table table-striped">
+             
                 <tr>
                     <th>Nomor</th>
                     <th>Kode Barang</th>
@@ -55,11 +51,9 @@
                     <th>Nama Barang</th>
                     <th>Harga</th>
                     <th>Stock</th>
-                    <th>Aksi</th>
+                    
                 </tr>
-                </thead>
-                <tbody>
-                <?php foreach($data_barang as $row) { ?>
+                <?php foreach($data_stock  as $row) { ?>
                      <tr>
                         <td><?php echo $row->id_barang; ?></td>
                         <td><?php echo $row->kode_barang; ?></td>
@@ -67,15 +61,10 @@
                         <td><?php echo $row->nama_barang; ?></td>
                         <td>Rp <?php echo number_format($row->harga,2,',','.'); ?></td>
                         <td><?php echo $row->stock; ?></td>
-                        <td class="text-nowrap">
-                           <a href="<?php echo site_url('Barang/ubah_barang/'. $row->id_barang) ?>" class="btn btn-sm btn-warning"> 
-                              <i class='fas fa-edit mr-1'></i>Ubah</a>
-                           <a href="<?php echo site_url('Barang/hapus_barang/'. $row->id_barang) ?>" class="btn btn-sm btn-danger"> 
-                              <i class='fas fa-trash mr-1'></i>Hapus</a>
-                        </td>
+                        
                      </tr>
                      <?php } ?>
-                </tbody>
+                
     </table>
 
               </div>
@@ -91,8 +80,7 @@
     </section>
                 </body>
     <!-- /.content -->
-    <script>
-   document.addEventListener('DOMContentLoaded', function(){
-      $('#tabelbarang').DataTable();
-   })
+    <script type="text/javascript">
+    window.print();
 </script>
+    
