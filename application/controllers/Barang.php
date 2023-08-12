@@ -31,6 +31,7 @@ class Barang extends CI_Controller {
 			'menu_dashboard' => '',
 			'menu_penjualan' => '',
 			'data_barang' =>$this->Barang_model->get_all_kategori_barang(),
+			
 		);
 
 		$this->template->load('template/template_admin', 'barang/barang_list', $data);
@@ -151,11 +152,18 @@ class Barang extends CI_Controller {
 		$data = array(
 			'menu_dashboard' => '',
             'menu_penjualan' => '',
-			
 			'data_barang' => $this->Barang_model->get_all_kategori_barang(),
 			
 		);
 		$this->template->load('template/template_admin', 'barang/cetak_barang', $data);
 		
 	}
+
+	public function cek_stock() {
+        $empty_stock_items = $this->Barang_model->cet_stock();
+
+        $data['empty_stock_items'] = $empty_stock_items;
+
+        $this->load->view('barang_list', $data);
+    }
 }
