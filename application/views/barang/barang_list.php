@@ -40,7 +40,7 @@
                 <div class="card-tools">
                 <a class="btn btn-primary" href="<?php echo site_url('Barang/tambah_barang') ?>"><i class="fas fa-plus mr-1"></i>Tambah</a>
                 <a class="btn btn-success" href="<?php echo site_url('Barang/cetak_barang') ?>"><i class="fas fa-print mr-1"></i>Cetak</a>
-                <a class="btn btn-warning" href="<?php echo site_url('Stockbarang') ?>"><i class="fas fa-info mr-1"></i>List Stock Habis</a>
+                <a class="btn btn-warning" target="_blank" href="<?php echo site_url('Stockbarang') ?>"><i class="fas fa-info mr-1"></i>List Stock Habis</a>
                 </div>
                 
               </div><!-- /.card-header -->
