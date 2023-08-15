@@ -79,13 +79,11 @@ class Itempenjualan extends CI_Controller {
 			
 			if($stock < $banyaknya ){
 				// echo '<script> alert('Stock tidak mencukupi, transaksi dibatalkan!!'); </script>';
-				echo "<scrip> alert('Stock tidak mencukupi, transaksi dibatalkan!');</scripalert>";			
+				echo "<script> alert('Stock tidak mencukupi, transaksi dibatalkan!');</script>";			
 			} else {
 			$this->Itempenjualan_model->insert($no_transaksi, $id_barang, $banyaknya, $hargasatuan);
-			
-			}
 			redirect(site_url('Itempenjualan/tambah_ip/'. $no_transaksi));
-			
+			}
 		}
 	}
 
