@@ -54,6 +54,30 @@ class Itempenjualan_model extends CI_Model
 			return $res;
 		}
    }
+
+   public function cek_stock() {
+    $this->db->select('stock');
+    $this->db->from('barang'); 
+    $this->db->where('id_barang', $id_barang);
+    $query = $this->db->get();
+
+    if ($query->num_rows() == 1) {
+      $barang = $query->row();
+      return $barang->stock >= $banyaknya;
+  }
+  
+  return false;
 }
+
+public function proses_transaksi($id_barang, $banyaknya) {
+  if ($this->cek_stock($id_barang, $banyaknya)) {
+     
+      return true;
+  }
+  return false;
+}
+
+}
+
 
 ?>

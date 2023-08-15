@@ -38,6 +38,7 @@
                   DATA BARANG HABIS
                 </h3>
                 <div class="card-tools">
+                <a class="btn btn-danger" href="<?php echo site_url('Barang') ?>"><i class="fas fa-run mr-1"></i>Kembali</a>
                 <a class="btn btn-success" href="<?php echo site_url('Stockbarang/cetak_barang') ?>"><i class="fas fa-print mr-1"></i>Cetak</a>
 
                 </div>
