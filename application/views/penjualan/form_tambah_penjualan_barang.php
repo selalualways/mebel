@@ -82,7 +82,8 @@
                                         <?php } ?>
                                     </select></td>
     <td><input type="number" name="banyaknya" id="banyaknya" class="form-control" placeholder="Jumlah Pembelian"></td>
-    <td><input type="number" name="hargasatuan" id="hargasatuan" class="form-control" placeholder="Harga Barang"></td>
+    <input type="hidden" name="stock" id="stock" class="form-control" placeholder="Stock">
+    <td><input type="number" readonly name="hargasatuan" id="hargasatuan" class="form-control" placeholder="Harga Barang"></td>
 
     <td><button type="submit" class="btn btn-primary">Simpan</button></td>              
   </tr>  

@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `barang` (
 REPLACE INTO `barang` (`id_barang`, `kode_barang`, `id_kategori`, `nama_barang`, `harga`, `stock`) VALUES
 	(1, 'KCP180', 1, 'Central Paradise Plytop 180', 2500000, 100),
 	(2, 'KCP160', 1, 'Central Paradise Plytop 160', 2500000, 0),
-	(3, 'KCPS160', 1, 'Central Paradise Standard 160', 1800000, 100),
+	(3, 'KCPS160', 1, 'Central Paradise Standard 160', 1800000, 99),
 	(4, 'KUPP180', 1, 'Uniland Paradise Plytop 180', 2300000, 202),
 	(5, 'KUPP160', 1, 'Uniland Paradise Plytop 160', 2100000, 100),
 	(6, 'KUPP120', 1, 'Uniland Paradise Plytop 120', 1750000, 100),
@@ -108,7 +108,8 @@ CREATE TABLE IF NOT EXISTS `item_transaksi` (
 -- Dumping data for table meubelaf.item_transaksi: ~1 rows (approximately)
 /*!40000 ALTER TABLE `item_transaksi` DISABLE KEYS */;
 REPLACE INTO `item_transaksi` (`no_transaksi`, `id_barang`, `banyaknya`, `hargasatuan`) VALUES
-	(1, 2, 101, 2500000);
+	(1, 2, 101, 2500000),
+	(2, 3, 1, 1800000);
 /*!40000 ALTER TABLE `item_transaksi` ENABLE KEYS */;
 
 -- Dumping structure for table meubelaf.karyawan
@@ -159,7 +160,7 @@ CREATE TABLE IF NOT EXISTS `transaksi` (
   CONSTRAINT `FK_transaksi_karyawan` FOREIGN KEY (`id_karyawan`) REFERENCES `karyawan` (`id_karyawan`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table meubelaf.transaksi: ~0 rows (approximately)
+-- Dumping data for table meubelaf.transaksi: ~2 rows (approximately)
 /*!40000 ALTER TABLE `transaksi` DISABLE KEYS */;
 REPLACE INTO `transaksi` (`no_transaksi`, `totalharga`, `tanggal`, `id_karyawan`, `pelanggan`, `hp_pelanggan`) VALUES
 	(1, 0, '2023-07-11 00:36:00', 3, 'Siti', '087715506421'),

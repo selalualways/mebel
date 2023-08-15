@@ -1,0 +1,24 @@
+BEFORE INSERT
+BEGIN
+    DECLARE current_stock INT;
+    SELECT stock FROM barang WHERE id_barang = NEW.id_barang INTO current_stock;
+    IF current_stock <= 0 THEN
+        SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'Transaksi dibatalkan karena stok barang habis.';
+    END IF;
+END
+
+BEFORE UPDATE
+BEGIN
+    DECLARE current_stock INT;
+    SELECT stock FROM barang WHERE id_barang = NEW.id_barang INTO current_stock;
+    
+    IF current_stock >= NEW.banyaknya THEN
+        SET NEW.banyaknya = -NEW.banyaknya;
+        UPDATE barang SET stock = stock - NEW.banyaknya 
+		  WHERE id_barang = NEW.id_barang;
+    ELSE
+        SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'Stok barang tidak mencukupi untuk transaksi ini.';
+    END IF;
+END

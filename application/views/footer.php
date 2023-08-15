@@ -73,11 +73,12 @@
                   success: function(data){
 							
                   var html = data.harga;
+				  var htmlstock = data.stock;
 
                   // alert(html);
                   
                   $('#hargasatuan').val(html);
-
+				  $('#stock').val(htmlstock);
 					}
 				});
 				return false;

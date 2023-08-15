@@ -70,15 +70,20 @@ class Itempenjualan extends CI_Controller {
 			$this->Itempenjualan_model->proses_transaksi($id_barang, $banyaknya);
 			
 		} else {
-			echo "<script><alert>Transaksi gagal. Stok barang tidak mencukupi atau sudah habis.</alert></script>";
 
 			$no_transaksi = $this->input->post('no_transaksi');
 			$id_barang = $this->input->post('id_barang');
 			$banyaknya = $this->input->post('banyaknya');
+			$stock = $this->input->post('stock');
 			$hargasatuan = $this->input->post('hargasatuan');
 			
+			if($stock < $banyaknya ){
+				// echo '<script> alert('Stock tidak mencukupi, transaksi dibatalkan!!'); </script>';
+				echo "<scrip> alert('Stock tidak mencukupi, transaksi dibatalkan!');</scripalert>";			
+			} else {
 			$this->Itempenjualan_model->insert($no_transaksi, $id_barang, $banyaknya, $hargasatuan);
 			
+			}
 			redirect(site_url('Itempenjualan/tambah_ip/'. $no_transaksi));
 			
 		}
