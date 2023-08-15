@@ -14,12 +14,10 @@
 
 
 -- Dumping database structure for meubelaf
-DROP DATABASE IF EXISTS `meubelaf`;
 CREATE DATABASE IF NOT EXISTS `meubelaf` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `meubelaf`;
 
 -- Dumping structure for table meubelaf.admin
-DROP TABLE IF EXISTS `admin`;
 CREATE TABLE IF NOT EXISTS `admin` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) DEFAULT NULL,
@@ -34,7 +32,6 @@ REPLACE INTO `admin` (`id`, `username`, `password`) VALUES
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 
 -- Dumping structure for table meubelaf.barang
-DROP TABLE IF EXISTS `barang`;
 CREATE TABLE IF NOT EXISTS `barang` (
   `id_barang` int(11) NOT NULL AUTO_INCREMENT,
   `kode_barang` varchar(50) NOT NULL,
@@ -50,11 +47,11 @@ CREATE TABLE IF NOT EXISTS `barang` (
 -- Dumping data for table meubelaf.barang: ~44 rows (approximately)
 /*!40000 ALTER TABLE `barang` DISABLE KEYS */;
 REPLACE INTO `barang` (`id_barang`, `kode_barang`, `id_kategori`, `nama_barang`, `harga`, `stock`) VALUES
-	(1, 'KCP180', 1, 'Central Paradise Plytop 180', 2500000, 98),
-	(2, 'KCP160', 1, 'Central Paradise Plytop 160', 2500000, 99),
+	(1, 'KCP180', 1, 'Central Paradise Plytop 180', 2500000, 100),
+	(2, 'KCP160', 1, 'Central Paradise Plytop 160', 2500000, 0),
 	(3, 'KCPS160', 1, 'Central Paradise Standard 160', 1800000, 100),
-	(4, 'KUPP180', 1, 'Uniland Paradise Plytop 180', 2300000, 89),
-	(5, 'KUPP160', 1, 'Uniland Paradise Plytop 160', 2100000, 98),
+	(4, 'KUPP180', 1, 'Uniland Paradise Plytop 180', 2300000, 202),
+	(5, 'KUPP160', 1, 'Uniland Paradise Plytop 160', 2100000, 100),
 	(6, 'KUPP120', 1, 'Uniland Paradise Plytop 120', 1750000, 100),
 	(7, 'KUPS180', 1, 'Uniland Paradise Standard 180', 2000000, 100),
 	(8, 'KUPS160', 1, 'Uniland Paradise Standard 160', 1850000, 100),
@@ -62,7 +59,7 @@ REPLACE INTO `barang` (`id_barang`, `kode_barang`, `id_kategori`, `nama_barang`,
 	(10, 'KUPS100', 1, 'Uniland Paradise Standard 100', 1400000, 99),
 	(11, 'KUPS90', 1, 'Uniland Paradise Standard 90', 1350000, 100),
 	(12, 'LBS120', 2, 'Lemari Besi Sliding Ukuran 120', 2350000, 99),
-	(13, 'LBS90', 2, 'Lemari Besi Sliding Ukuran 90', 2000000, 96),
+	(13, 'LBS90', 2, 'Lemari Besi Sliding Ukuran 90', 2000000, 103),
 	(14, 'LBDPC90', 2, 'Lemari Besi Dua Pintu Classic Ukuran 90', 2200000, 97),
 	(15, 'LBDPM90', 2, 'Lemari Besi Dua Pintu Minimalis Ukuran 90', 2000000, 99),
 	(16, 'SBL003', 4, 'Sofa Bed Lotus 3 Fungsi', 2950000, 99),
@@ -97,7 +94,6 @@ REPLACE INTO `barang` (`id_barang`, `kode_barang`, `id_kategori`, `nama_barang`,
 /*!40000 ALTER TABLE `barang` ENABLE KEYS */;
 
 -- Dumping structure for table meubelaf.item_transaksi
-DROP TABLE IF EXISTS `item_transaksi`;
 CREATE TABLE IF NOT EXISTS `item_transaksi` (
   `no_transaksi` int(11) NOT NULL,
   `id_barang` int(11) NOT NULL DEFAULT 0,
@@ -109,17 +105,13 @@ CREATE TABLE IF NOT EXISTS `item_transaksi` (
   CONSTRAINT `FK_item_transaksi_transaksi` FOREIGN KEY (`no_transaksi`) REFERENCES `transaksi` (`no_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table meubelaf.item_transaksi: ~3 rows (approximately)
+-- Dumping data for table meubelaf.item_transaksi: ~1 rows (approximately)
 /*!40000 ALTER TABLE `item_transaksi` DISABLE KEYS */;
 REPLACE INTO `item_transaksi` (`no_transaksi`, `id_barang`, `banyaknya`, `hargasatuan`) VALUES
-	(1, 4, 4, 2300000),
-	(1, 5, 2, 2100000),
-	(1, 13, 7, 2000000),
-	(2, 4, 10, 2300000);
+	(1, 2, 101, 2500000);
 /*!40000 ALTER TABLE `item_transaksi` ENABLE KEYS */;
 
 -- Dumping structure for table meubelaf.karyawan
-DROP TABLE IF EXISTS `karyawan`;
 CREATE TABLE IF NOT EXISTS `karyawan` (
   `id_karyawan` int(11) NOT NULL AUTO_INCREMENT,
   `nama_karyawan` varchar(50) DEFAULT NULL,
@@ -135,7 +127,6 @@ REPLACE INTO `karyawan` (`id_karyawan`, `nama_karyawan`) VALUES
 /*!40000 ALTER TABLE `karyawan` ENABLE KEYS */;
 
 -- Dumping structure for table meubelaf.kategori
-DROP TABLE IF EXISTS `kategori`;
 CREATE TABLE IF NOT EXISTS `kategori` (
   `id_kategori` int(10) NOT NULL AUTO_INCREMENT,
   `nama_kategori` varchar(50) DEFAULT NULL,
@@ -156,7 +147,6 @@ REPLACE INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
 /*!40000 ALTER TABLE `kategori` ENABLE KEYS */;
 
 -- Dumping structure for table meubelaf.transaksi
-DROP TABLE IF EXISTS `transaksi`;
 CREATE TABLE IF NOT EXISTS `transaksi` (
   `no_transaksi` int(11) NOT NULL DEFAULT 0,
   `totalharga` double DEFAULT NULL,
@@ -177,7 +167,6 @@ REPLACE INTO `transaksi` (`no_transaksi`, `totalharga`, `tanggal`, `id_karyawan`
 /*!40000 ALTER TABLE `transaksi` ENABLE KEYS */;
 
 -- Dumping structure for view meubelaf.vrtransaksi
-DROP VIEW IF EXISTS `vrtransaksi`;
 -- Creating temporary table to overcome VIEW dependency errors
 CREATE TABLE `vrtransaksi` (
 	`tahun` INT(4) NULL,
@@ -196,7 +185,6 @@ CREATE TABLE `vrtransaksi` (
 ) ENGINE=MyISAM;
 
 -- Dumping structure for trigger meubelaf.item_transaksi_after_delete
-DROP TRIGGER IF EXISTS `item_transaksi_after_delete`;
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
 CREATE TRIGGER `item_transaksi_after_delete` AFTER DELETE ON `item_transaksi` FOR EACH ROW BEGIN
@@ -207,7 +195,6 @@ DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
 -- Dumping structure for trigger meubelaf.item_transaksi_after_insert
-DROP TRIGGER IF EXISTS `item_transaksi_after_insert`;
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
 CREATE TRIGGER `item_transaksi_after_insert` AFTER INSERT ON `item_transaksi` FOR EACH ROW BEGIN
@@ -217,8 +204,40 @@ END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
+-- Dumping structure for trigger meubelaf.item_transaksi_before_insert
+SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION';
+DELIMITER //
+CREATE TRIGGER `item_transaksi_before_insert` BEFORE INSERT ON `item_transaksi` FOR EACH ROW BEGIN
+    DECLARE current_stock INT;
+    SELECT stock FROM barang WHERE id_barang = NEW.id_barang INTO current_stock;
+    IF current_stock <= 0 THEN
+        SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'Transaksi dibatalkan karena stok barang habis.';
+    END IF;
+END//
+DELIMITER ;
+SET SQL_MODE=@OLDTMP_SQL_MODE;
+
+-- Dumping structure for trigger meubelaf.item_transaksi_before_update
+SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION';
+DELIMITER //
+CREATE TRIGGER `item_transaksi_before_update` BEFORE UPDATE ON `item_transaksi` FOR EACH ROW BEGIN
+    DECLARE current_stock INT;
+    SELECT stock FROM barang WHERE id_barang = NEW.id_barang INTO current_stock;
+    
+    IF current_stock >= NEW.banyaknya THEN
+        SET NEW.banyaknya = -NEW.banyaknya;
+        UPDATE barang SET stock = stock - NEW.banyaknya 
+		  WHERE id_barang = NEW.id_barang;
+    ELSE
+        SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'Stok barang tidak mencukupi untuk transaksi ini.';
+    END IF;
+END//
+DELIMITER ;
+SET SQL_MODE=@OLDTMP_SQL_MODE;
+
 -- Dumping structure for view meubelaf.vrtransaksi
-DROP VIEW IF EXISTS `vrtransaksi`;
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `vrtransaksi`;
 CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `vrtransaksi` AS SELECT 
