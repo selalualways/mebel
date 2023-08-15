@@ -19,7 +19,7 @@ class Itempenjualan extends CI_Controller {
 			'action' => site_url('Itempenjualan/proses_tambah_ip'),
 			'data_item_transaksi' =>$this->Itempenjualan_model->get_all_ip(),
 		);
-
+		
 		$this->template->load('template/template_admin', 'penjualan/form_tambah_penjualan_barang', $data);
 		
 	}
@@ -64,16 +64,21 @@ class Itempenjualan extends CI_Controller {
 		$this->_rules();
 		if($this->form_validation->run() == FALSE) {
 			$no_transaksi = $this->input->post('no_transaksi');
+			$id_barang = $this->input->post('id_barang');
+            $banyaknya = $this->input->post('banyaknya');
 			$this->tambah_ip($no_transaksi);
-		} else {
+			$this->Itempenjualan_model->proses_transaksi($id_barang, $banyaknya);
 			
+		} else {
+			echo "<script><alert>Transaksi gagal. Stok barang tidak mencukupi atau sudah habis.</alert></script>";
+
 			$no_transaksi = $this->input->post('no_transaksi');
 			$id_barang = $this->input->post('id_barang');
 			$banyaknya = $this->input->post('banyaknya');
 			$hargasatuan = $this->input->post('hargasatuan');
 			
 			$this->Itempenjualan_model->insert($no_transaksi, $id_barang, $banyaknya, $hargasatuan);
-
+			
 			redirect(site_url('Itempenjualan/tambah_ip/'. $no_transaksi));
 			
 		}
@@ -87,7 +92,3 @@ class Itempenjualan extends CI_Controller {
         echo json_encode($data);
     }
 }
-
-	
-
-	
